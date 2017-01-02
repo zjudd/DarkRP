@@ -1,5 +1,5 @@
 local kickMessage = [[You cannot join these server(s) twice with the same account.
-If you're a developer, please disable antimultirun in the DarkRP config in the DarkRPMod.
+If you're a developer, please disable antimultirun in the DarkRP config.
 ]]
 
 local function clearServerEntries()
@@ -21,7 +21,7 @@ end
 
 local function removePlayer(ply)
     MySQLite.query(string.format([[
-        DELETE FROM darkrp_serverplayer WHERE uid = %s AND serverid = %s)
+        DELETE FROM darkrp_serverplayer WHERE uid = %s AND serverid = %s
     ]], ply:SteamID64(), MySQLite.SQLStr(DarkRP.serverId)))
 end
 
@@ -48,6 +48,7 @@ end
 hook.Add("DarkRPDBInitialized", "DarkRP_antimultirun", function()
     if not GAMEMODE.Config.antimultirun then return end
     if not MySQLite.isMySQL() then return end
+    if not game.IsDedicated() then return end
 
     DarkRP.serverId = game.GetIPAddress()
 
