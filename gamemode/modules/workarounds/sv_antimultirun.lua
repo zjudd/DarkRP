@@ -1,4 +1,4 @@
-local kickMessage = [[You cannot join these server(s) twice with the same account
+local kickMessage = [[You cannot join these server(s) twice with the same account.
 If you're a developer, please disable antimultirun in the DarkRP config in the DarkRPMod.
 ]]
 
@@ -33,22 +33,21 @@ local function addHooks()
         MySQLite.queryValue(string.format([[
             SELECT serverid FROM darkrp_serverplayer WHERE serverid = %s AND uid = %s
         ]], MySQLite.SQLStr(DarkRP.serverId), uid), function(sid)
-            show(sid)
             if sid then
-                game.ConsoleCommand(string.format("kickid %s %s\n", userid, kickMessage))
+                game.KickID(userid, kickMessage)
             else
                 insertUid(uid)
             end
         end, error)
     end)
 
-
     hook.Add("PlayerDisconnected", "DarkRP_antimultirun", removePlayer)
+    hook.Add("ShutDown", "DarkRP_antimultirun", clearServerEntries)
 end
 
 hook.Add("DarkRPDBInitialized", "DarkRP_antimultirun", function()
-    -- if not MySQLite.isMySQL() then return end
     if not GAMEMODE.Config.antimultirun then return end
+    if not MySQLite.isMySQL() then return end
 
     DarkRP.serverId = game.GetIPAddress()
 
