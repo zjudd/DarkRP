@@ -42,6 +42,7 @@ function ENT:Draw()
     if not IsValid(self.csModel) then
         self:InitCsModel()
     end
+    self.csModel:SetPos(Pos)
     self.csModel:SetAngles(rotAng)
 
 
