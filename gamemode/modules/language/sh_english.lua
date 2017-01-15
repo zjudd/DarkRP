@@ -43,6 +43,9 @@ local my_language = {
     npc_killpay = "%s for killing an NPC!",
     profit = "profit",
     loss = "loss",
+    Donate = "Donate",
+    you_donated = "You have donated %s to %s!",
+    has_donated = "%s has donated %s!",
 
     -- backwards compatibility
     deducted_x = "Deducted %s%d",
@@ -183,6 +186,7 @@ local my_language = {
     food = "food",
     Food = "Food",
     money_printer = "Money Printer",
+    tip_jar = "Tip Jar",
 
     sign_this_letter = "Sign this letter",
     signed_yours = "Yours,",
