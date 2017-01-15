@@ -36,9 +36,3 @@ function ENT:Use(ply)
         net.WriteEntity(self)
     net.Send(ply)
 end
-
-
-function ENT:CanTool(ply, trace, tool)
-    if tool == "remover" and ply == self:Getowning_ent() then return true end
-end
-
