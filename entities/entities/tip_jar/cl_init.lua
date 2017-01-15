@@ -30,12 +30,12 @@ end
 function ENT:Draw()
     local Pos = self:GetPos()
     local Ang = self:GetAngles()
-    local frametime = FrameTime()
+    local sysTime = SysTime()
     local eyepos = EyePos()
     local planeNormal = Ang:Up()
 
     local rotAng = Angle(Ang)
-    self.rotationOffset = (self.rotationOffset + self.rotationSpeed * frametime) % 360
+    self.rotationOffset = sysTime % 360 * self.rotationSpeed
     rotAng:RotateAroundAxis(planeNormal, self.rotationOffset)
 
     -- Something about cs models getting removed on their own...
@@ -71,11 +71,11 @@ function ENT:Draw()
         draw.WordBox(2, -titleTextWidth * 0.5, -72                      , title, "HUDNumber5", self.colorBackground, self.colorText)
         draw.WordBox(2, -ownerTextWidth * 0.5, -72 + titleTextHeight + 4, owner, "HUDNumber5", self.colorBackground, self.colorText)
 
-        self:DrawAnims(frametime)
+        self:DrawAnims(sysTime)
     cam.End3D2D()
 end
 
-function ENT:DrawAnims(frametime)
+function ENT:DrawAnims(sysTime)
     local anim = self.firstDonateAnimation
 
     while anim do
@@ -95,7 +95,7 @@ function ENT:DrawAnims(frametime)
             0
         )
 
-        anim.progress = anim.progress + frametime * self.donateAnimSpeed
+        anim.progress = (sysTime - anim.start) * self.donateAnimSpeed
 
         anim = anim.nextDonateAnimation
     end
@@ -112,6 +112,7 @@ function ENT:Donated(ply, amount)
 
     local anim = {
         amount = txtAmount,
+        start = SysTime(),
         textWidth = surface.GetTextSize(txtAmount),
         progress = 0,
         nextDonateAnimation = nil,
