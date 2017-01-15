@@ -24,6 +24,11 @@ function DONATE_ENTRY:Init()
         self:SetText(new)
         self:SetCaretPos(math.min(pos, string.len(new)))
     end)
+
+    onModelUpdate("lastTipAmount", function()
+        self:SelectAllText()
+        self:RequestFocus()
+    end)
 end
 
 function DONATE_ENTRY:CheckNumeric(value)

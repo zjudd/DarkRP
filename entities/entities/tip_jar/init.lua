@@ -38,9 +38,7 @@ function ENT:Use(ply)
 end
 
 
-function ENT:OnRemove()
-    if self.sound then
-        self.sound:Stop()
-    end
+function ENT:CanTool(ply, trace, tool)
+    if tool == "remover" and ply == self:Getowning_ent() then return true end
 end
 

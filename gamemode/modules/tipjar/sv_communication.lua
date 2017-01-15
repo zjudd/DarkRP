@@ -36,6 +36,8 @@ net.Receive("DarkRP_TipJarDonate", function(_, ply)
 
     tipjar:AddDonation(ply:Nick(), amount)
 
+    tipjar:EmitSound("ambient/alarms/warningbell1.wav")
+
     local strAmount = DarkRP.formatMoney(amount)
 
     DarkRP.notify(ply,   NOTIFY_HINT, 4, DarkRP.getPhrase("you_donated", owner:Nick(), strAmount))

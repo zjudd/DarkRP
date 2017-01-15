@@ -277,6 +277,7 @@ local my_language = {
     cleaned_up = "Your %s were cleaned up.",
     you_bought_x = "You have bought %s for %s%d.", -- backwards compatibility
     you_bought = "You have bought %s for %s.",
+    you_got_yourself = "You got yourself a %s.",
     you_received_x = "You have received %s for %s.",
 
     created_first_jailpos = "You have created the first jail position!",
