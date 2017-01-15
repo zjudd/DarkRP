@@ -40,7 +40,7 @@ net.Receive("DarkRP_TipJarDonate", function(_, ply)
 
     local strAmount = DarkRP.formatMoney(amount)
 
-    DarkRP.notify(ply,   NOTIFY_HINT, 4, DarkRP.getPhrase("you_donated", owner:Nick(), strAmount))
+    DarkRP.notify(ply,   NOTIFY_HINT, 4, DarkRP.getPhrase("you_donated", strAmount, owner:Nick()))
     DarkRP.notify(owner, NOTIFY_HINT, 4, DarkRP.getPhrase("has_donated", ply:Nick(),   strAmount))
 
     net.Start("DarkRP_TipJarDonate")
