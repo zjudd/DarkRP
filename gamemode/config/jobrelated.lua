@@ -302,3 +302,20 @@ DarkRP.createCategory{
     canSee = fp{fn.Id, true},
     sortOrder = 255,
 }
+
+
+--]]
+TEAM_SKEET = DarkRP.createJob("Retard Skeet", {
+    color = Color(218, 0, 255, 255),
+    model = {"models/player/odessa.mdl"},
+    description = [[nigger]],
+    weapons = {"m9k_mp5"},
+    command = "retardskeet",
+    max = 3,
+    salary = 1000,
+    admin = 0,
+    vote = false,
+    hasLicense = false,
+    candemote = false,
+    category = "Citizens"
+})
